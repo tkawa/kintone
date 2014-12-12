@@ -31,9 +31,7 @@ class Kintone::Api
         { 'X-Cybozu-API-Token' => user }
       end
     @connection =
-      Faraday.new(url: "https://#{domain}",
-                  headers: headers,
-                  ssl: false) do |builder|
+      Faraday.new(url: "https://#{domain}", headers: headers) do |builder|
         builder.adapter :net_http
         builder.request :url_encoded
         builder.response :json
