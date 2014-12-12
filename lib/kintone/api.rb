@@ -23,11 +23,16 @@ class Kintone::Api
   BASE_PATH = '/k/v1/'
   COMMAND = '%s.json'
 
-  def initialize(domain, user, password)
-    token = Base64.encode64("#{user}:#{password}")
+  def initialize(domain, user, password = nil)
+    headers =
+      if password # パスワード認証
+        { 'X-Cybozu-Authorization' => Base64.encode64("#{user}:#{password}") }
+      else # APIトークン認証
+        { 'X-Cybozu-API-Token' => user }
+      end
     @connection =
       Faraday.new(url: "https://#{domain}",
-                  headers: { 'X-Cybozu-Authorization' => token },
+                  headers: headers,
                   ssl: false) do |builder|
         builder.adapter :net_http
         builder.request :url_encoded
