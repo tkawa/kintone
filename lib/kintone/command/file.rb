@@ -5,11 +5,11 @@ class Kintone::Command::File < Kintone::Command
     'file'
   end
 
-  def register(app, file)
+  def register(file)
     @api.file_post(@url, file)
   end
 
-  def create(app, file)
-    register(app, file)
+  def create(file)
+    register(file)
   end
 end
