@@ -16,6 +16,7 @@ require 'kintone/command/space_members'
 require 'kintone/command/guests'
 require 'kintone/command/app'
 require 'kintone/command/apis'
+require 'kintone/command/file'
 require 'kintone/api/guest'
 require 'kintone/query'
 
